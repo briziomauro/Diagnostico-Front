@@ -1,12 +1,11 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import Layout from './components/layout/Layout'
-import MainPage from './components/mainPage/MainPage'
-import MovieFunction from './components/movieFunction/MovieFunction'
-import Billboard from './components/billboard/Billboard'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import Layout from "./components/layout/Layout";
+import MainPage from "./components/mainPage/MainPage";
+import MovieScreening from "./components/movieScreening/MovieScreening";
+import Billboard from "./components/billboard/Billboard";
 
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -25,16 +24,16 @@ function App() {
       ),
     },
     {
-      path: "/movie-function:id",
+      path: "/movie-screening",
       element: (
         <Layout>
-          <MovieFunction />
+          <MovieScreening />
         </Layout>
       ),
-    }
-  ])
+    },
+  ]);
 
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
