@@ -19,7 +19,6 @@ const Nav = () => {
             </div>
             <div className='flex justify-evenly text-xl p-2'>
                 <p className='cursor-pointer' onClick={navigateBillboard}>Cartelera</p>
-                <p className='cursor-pointer' >Directores</p>
             </div>
         </div>
     )
