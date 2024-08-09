@@ -6,7 +6,7 @@ const MovieScreening = () => {
   const { id } = useParams();
   const moviescreen = Movies.find (movie => movie.id == id)
   return (
-    <div>{moviescreen.img}</div>
+    <div>{moviescreen.title}</div>
 
   )
 }
