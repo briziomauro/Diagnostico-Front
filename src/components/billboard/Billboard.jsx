@@ -4,7 +4,6 @@ import { Movies } from "../data/Data";
 const Billboard = () => {
   const navigate = useNavigate();
 
-  // Modificar la función para aceptar solo el ID de la película
   const navigateToMovieScreening = (movieId) => {
     navigate(`/movie-screening/${movieId}`);
   };
@@ -15,7 +14,7 @@ const Billboard = () => {
         {Movies.map((movie) => (
           <div
             key={movie.id}
-            onClick={() => navigateToMovieScreening(movie.id)} // Pasar el ID directamente
+            onClick={() => navigateToMovieScreening(movie.id)} 
             className="text-white rounded-lg overflow-hidden shadow-md relative cursor-pointer"
           >
             <img
