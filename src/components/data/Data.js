@@ -33,7 +33,7 @@ export const Movies = [
     }
   ];
   
-export const MovieScreening = [
+export const Functions = [
     {
         id: 1,
         date: "2024-08-15",
