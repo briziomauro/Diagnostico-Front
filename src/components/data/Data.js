@@ -3,7 +3,7 @@ export const Movies = [
       id: 1,
       title: "Inception",
       description: "A skilled thief, the absolute best in the art of extraction, steals valuable secrets from deep within the subconscious during the dream state.",
-      img: "https://www.imdb.com/title/tt1375666/mediaviewer/rm442856448/?ref_=tt_ov_i",
+      img: "https://m.media-amazon.com/images/M/MV5BMTUzMzUyOTktNmYyNS00YTA1LWIxNmQtMGIzZDYxZGI3OTliXkEyXkFqcGdeQXVyMTYzMDM0NTU@.V1_FMjpg_UY2812.jpg",
       director: "Christopher Nolan",
       origen: "Internacional"
     },
@@ -11,7 +11,7 @@ export const Movies = [
       id: 2,
       title: "The Godfather",
       description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-      img: "https://www.imdb.com/title/tt0068646/mediaviewer/rm1206482688/?ref_=tt_ov_i",
+      img: "https://m.media-amazon.com/images/M/MV5BMGNkYzY2ZjUtODU4My00Mjc5LWEwNDAtMzUxZjcxZWJhZTcwXkEyXkFqcGdeQXVyODc0OTEyNDU@.V1_FMjpg_UX431.jpg",
       director: "Francis Ford Coppola",
       origen: "Internacional"
     },
@@ -19,7 +19,7 @@ export const Movies = [
       id: 3,
       title: "El Secreto de sus Ojos",
       description: "Un empleado de un juzgado investiga un caso de violación y asesinato sin resolver durante 25 años mientras enfrenta sus propios dilemas personales.",
-      img: "https://www.imdb.com/title/tt1305806/mediaviewer/rm3606678528/?ref_=tt_ov_i",
+      img: "https://m.media-amazon.com/images/M/MV5BODI0ODczZDYtYThiYy00YTZjLWIwNzMtZmI2NDNiYWM2NzdlXkEyXkFqcGdeQXVyMTYzMDM0NTU@.V1_FMjpg_UX747.jpg",
       director: "Juan José Campanella",
       origen: "Nacional"
     },
@@ -27,7 +27,7 @@ export const Movies = [
       id: 4,
       title: "Relatos Salvajes",
       description: "Una serie de historias en las que los personajes se enfrentan a situaciones extremas que los llevan al límite.",
-      img: "https://www.imdb.com/title/tt3011894/mediaviewer/rm2067064576/?ref_=tt_ov_i",
+      img: "https://m.media-amazon.com/images/M/MV5BYjIzZmNiZTktZGM5MC00MWNiLTkzZGItNDAyZTU3ZjI5ODdjXkEyXkFqcGdeQXVyNDUzOTQ5MjY@.V1_FMjpg_UX1118.jpg",
       director: "Damián Szifron",
       origen: "Nacional"
     }

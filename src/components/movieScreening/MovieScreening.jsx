@@ -1,5 +1,14 @@
-const MovieScreening = () => {
-  return <div>MovieScreening</div>;
-};
+import React from 'react'
+import { useParams } from 'react-router-dom';
+import { Movies } from '../data/Data';
 
-export default MovieScreening;
+const MovieScreening = () => {
+  const { id } = useParams();
+  const moviescreen = Movies.find (movie => movie.id == id)
+  return (
+    <div>{moviescreen.img}</div>
+
+  )
+}
+
+export default MovieScreening
