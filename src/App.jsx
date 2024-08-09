@@ -24,7 +24,7 @@ function App() {
       ),
     },
     {
-      path: "/movie-screening",
+      path: "/movie-screening/:id",
       element: (
         <Layout>
           <MovieScreening />
