@@ -1,39 +1,61 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
-import { Movies } from '../data/Data';
-import { Functions } from '../data/Data';
+import { useParams } from "react-router-dom";
+import { Movies, Functions } from "../data/Data";
 
 const MovieScreening = () => {
   const { id } = useParams();
-  const moviescreen = Movies.find(movie => movie.id == id)
-  const moviesFunctions = Functions.find(functionM => functionM.movieId == id)
+  const movie = Movies.find((movie) => movie.id === parseInt(id));
+  const movieFunctions = Functions.filter(
+    (func) => func.movieId === parseInt(id)
+  );
+
   return (
-    <div className='flex justify-center'>
-      <section>
-        <h2 className='text-6xl '>
-          {moviescreen.title}
-        </h2>
-        <div>
-          <p>Cine2 - Rosario</p>
-          <div>
-            <h3>{moviesFunctions.date}</h3>
-            <p>{moviesFunctions.time}</p>
-            <p>{moviesFunctions.price}</p>
-          </div>
-          <p>{moviescreen.description}</p>
+    <div className="container mx-auto mt-10 p-6 bg-gray-900 text-white rounded-xl shadow-lg">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start">
+        <div className="lg:w-2/3">
+          <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
+          <p className="text-base mb-4">
+            <strong>Descripción:</strong> {movie.description}
+          </p>
+          <p className="text-base mb-4">
+            <strong>Director:</strong> {movie.director}
+          </p>
+          <p className="text-base mb-8">
+            <strong>Origen:</strong> {movie.origen}
+          </p>
+
+          <h2 className="text-2xl font-semibold mb-4">Funciones Disponibles</h2>
+          <ul className="space-y-3">
+            {movieFunctions.map((func) => (
+              <li
+                key={func.id}
+                className="flex justify-between bg-gray-800 p-4 rounded-md shadow-md"
+              >
+                <span>
+                  {func.date} - {func.time}
+                </span>
+                <span className="text-yellow-400 font-semibold">
+                  ${func.price.toFixed(2)}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
-      <section>
-        <img
-          className='w-[340px] h-[470px]'
-          src={moviescreen.img} alt="InceptionImg" />
-        <p>Titulo: {moviescreen.title}</p>
-        <p>Origen: {moviescreen.origen}</p>
-        <p>Director: {moviescreen.director}</p>
-      </section>
+        <div className="lg:w-1/3 lg:pl-8 mt-6 lg:mt-0">
+          <img
+            src={movie.img}
+            alt={movie.title}
+            className="w-full h-auto rounded-lg shadow-2xl object-cover"
+          />
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
+          Comprar Entradas
+        </button>
+      </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default MovieScreening
+export default MovieScreening;
