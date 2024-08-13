@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Movies } from "../data/Data";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 const Billboard = () => {
   const navigate = useNavigate();
@@ -21,14 +23,7 @@ const Billboard = () => {
   };
 
   return (
-    <div className="container m-10 p-4 ">
-      <button
-        onClick={navigateToAddMovie}
-        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mb-4"
-      >
-        Añadir Nueva Película
-      </button>
-
+    <div className="container mx-auto mt-10 p-4">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {Movies.map((movie) => (
           <div
@@ -47,19 +42,23 @@ const Billboard = () => {
             <div className="absolute top-2 right-2 flex space-x-2">
               <button
                 onClick={() => navigateToEditMovie(movie.id)}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-1 px-2 rounded"
+                className="bg-white text-black py-1 px-2 rounded"
               >
                 Editar
               </button>
               <button
                 onClick={() => navigateToDeleteMovie(movie.id)}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded"
+                className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded"
               >
                 Eliminar
               </button>
             </div>
+
           </div>
         ))}
+        <div onClick={navigateToAddMovie} className="flex items-center justify-center bg-zinc-800 bg-opacity-40 text-white hover:bg-opacity-80 transition-all duration-300 h-[411px] w-[288px] cursor-pointer">
+          <i className="bi bi-plus-lg text-5xl" />
+        </div>
       </div>
     </div>
   );
