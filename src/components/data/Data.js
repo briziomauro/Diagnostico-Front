@@ -19,7 +19,7 @@ export const Movies = [
       id: 3,
       title: "El Secreto de sus Ojos",
       description: "Un empleado de un juzgado investiga un caso de violación y asesinato sin resolver durante 25 años mientras enfrenta sus propios dilemas personales.",
-      img: "https://m.media-amazon.com/images/M/MV5BODI0ODczZDYtYThiYy00YTZjLWIwNzMtZmI2NDNiYWM2NzdlXkEyXkFqcGdeQXVyMTYzMDM0NTU@.V1_FMjpg_UX747.jpg",
+      img: "https://m.media-amazon.com/images/M/MV5BMTk0NTYzNjEyOF5BMl5BanBnXkFtZTcwOTAwMDk2Mw@@._V1_.jpg",
       director: "Juan José Campanella",
       origen: "Nacional"
     },
