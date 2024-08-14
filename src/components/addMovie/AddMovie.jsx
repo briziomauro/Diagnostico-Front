@@ -60,16 +60,6 @@ const AddMovie = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm mb-1">Funciones disponibles:</label>
-            <input
-              type="text"
-              value={funcion}
-              onChange={(e) => setFuncion(e.target.value)}
-              className="w-full p-2 bg-zinc-800 text-white "
-            />
-          </div>
-
-          <div className="mb-4">
             <label className="block text-sm mb-1">Descripción</label>
             <textarea
               value={description}
