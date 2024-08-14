@@ -50,7 +50,7 @@ const MovieScreening = () => {
           <img
             src={movie.img}
             alt={movie.title}
-            className="w-[328px] h-[470px] object-cover"
+            className="w-[315px] h-[438px] object-fit"
           />
           <p className="text-base my-2">
             <strong>Titulo: </strong> {movie.title}
