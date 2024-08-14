@@ -55,15 +55,15 @@ const Billboard = () => {
             <div className="absolute top-2 right-2 flex space-x-2">
               <button
                 onClick={() => navigateToEditMovie(movie.id)}
-                className="bg-white text-black py-1 px-2 rounded"
+                className="bg-white hover:bg-zinc-300 text-black py-1 px-2 text-sm"
               >
-                Editar
+                EDITAR
               </button>
               <button
                 onClick={() => handleDeleteMovie(movie.id)}
-                className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded"
+                className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 text-sm"
               >
-                Eliminar
+                ELIMINAR
               </button>
             </div>
 
