@@ -42,14 +42,14 @@ function App() {
         </Layout>
       ),
     },
-    {
-      path: "/admin/delete-movie/:id",
-      element: (
-        <Layout>
-          <DeleteMovie />
-        </Layout>
-      ),
-    },
+    // {
+    //   path: "/admin/delete-movie/:id",
+    //   element: (
+    //     <Layout>
+    //       <DeleteMovie />
+    //     </Layout>
+    //   ),
+    // },
 
     {
       path: "/admin/add-movie",
