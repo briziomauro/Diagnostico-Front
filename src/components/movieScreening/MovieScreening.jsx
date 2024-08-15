@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Movies, Functions } from "../data/Data";
+import AddFunction from "../addFunction/AddFunction";
 
 const MovieScreening = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const MovieScreening = () => {
   return (
     <div className="flex flex-col justify-center items-center my-10">
       <div className="flex">
-        <div>
+        <div className="w-[575px]">
           <section>
             <h1 className="text-4xl font-bold mb-4 uppercase">{movie.title}</h1>
             <p className="mb-4 font-light">
@@ -37,6 +38,8 @@ const MovieScreening = () => {
               ))}
             </ul>
           </section>
+
+          <AddFunction movieId={movie.id} />
 
           <div className="mt-8">
             <button className="bg-white hover:bg-zinc-300 text-black py-3 px-6 transition duration-300 ease-in-out">
