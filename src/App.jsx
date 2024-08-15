@@ -5,7 +5,6 @@ import MainPage from "./components/mainPage/MainPage";
 import MovieScreening from "./components/movieScreening/MovieScreening";
 import Billboard from "./components/billboard/Billboard";
 import EditMovie from "./components/editMovie/EditMovie";
-import DeleteMovie from "./components/deleteMovie/DeleteMovie";
 import AddMovie from "./components/addMovie/AddMovie";
 
 function App() {
@@ -42,15 +41,6 @@ function App() {
         </Layout>
       ),
     },
-    // {
-    //   path: "/admin/delete-movie/:id",
-    //   element: (
-    //     <Layout>
-    //       <DeleteMovie />
-    //     </Layout>
-    //   ),
-    // },
-
     {
       path: "/admin/add-movie",
       element: (
