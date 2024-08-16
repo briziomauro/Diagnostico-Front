@@ -1,13 +1,23 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Movies, Functions } from "../data/Data";
 import AddFunction from "../addFunction/AddFunction";
+import DeleteFunction from "../deleteFunction/DeleteFunction";
+import UpdateFunction from "../updateFunction/UpdateFunction";
 
 const MovieScreening = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
+
   const movie = Movies.find((movie) => movie.id === parseInt(id));
   const movieFunctions = Functions.filter(
     (func) => func.movieId === parseInt(id)
   );
+
+  //fetch get functions
 
   return (
     <div className="flex flex-col justify-center items-center my-10">
@@ -26,14 +36,20 @@ const MovieScreening = () => {
               {movieFunctions.map((func) => (
                 <li
                   key={func.id}
-                  className="flex justify-between bg-zinc-800 p-4"
+                  className="flex flex-col justify-between bg-zinc-800 p-4"
                 >
-                  <span>
-                    {func.date} - {func.time}
-                  </span>
-                  <span className="text-yellow-300">
-                    ${func.price.toFixed(2)}
-                  </span>
+                  <div className="flex justify-between">
+                    <span>
+                      {func.date} - {func.time}
+                    </span>
+                    <span className="text-yellow-300">
+                      ${func.price.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 mt-3">
+                    <UpdateFunction />
+                    <DeleteFunction />
+                  </div>
                 </li>
               ))}
             </ul>
