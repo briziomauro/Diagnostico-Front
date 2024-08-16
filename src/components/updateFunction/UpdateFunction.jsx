@@ -58,7 +58,7 @@ const UpdateFunction = () => {
 
                             <button
                                 type='submit'
-                                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white py-3 px-6 shadow-lg transition duration-300 ease-in-out mt-3"
+                                className="w-full bg-zinc-900 hover:bg-zinc-950 text-white py-3 px-6 shadow-lg transition duration-300 ease-in-out mt-3"
                             >
                                 EDITAR
                             </button>

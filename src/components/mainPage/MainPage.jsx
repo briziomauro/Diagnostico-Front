@@ -11,11 +11,9 @@ const MainPage = () => {
       {/* ACA VA UN SLIDER */}
       <div className="flex justify-center items-center space-x-4 mt-8">
         <img src="https://static.voyalcine.net/Uploads/i3553.jpg" alt="Imagen de película" />
-        <iframe
-          className="w-[560px] h-[315px]"
-          src="https://www.youtube.com/embed/V4ZDKt9KICo"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+        <div className="w-[560px] h-[315px]">
+          <lite-youtube videoid="V4ZDKt9KICo"></lite-youtube>
+        </div>
       </div>
 
       <div className="flex justify-center items-center mt-5">
