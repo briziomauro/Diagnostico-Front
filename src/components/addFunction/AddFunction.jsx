@@ -28,6 +28,29 @@ const AddFunction = ({ movieId }) => {
 
     //SIMULACION DE NUEVA FUNCION, ACA VA FETCH A LA API
 
+    const addNewFunction = async (newFunction) => {
+        try {
+          const lastFunctionId = functions.length > 0 ? functions[0].id : 0;
+          const newFunctionId = lastFunctionId + 1;
+          const functionId = { ...newFunction, id: newFunctionId };
+          const response = await fetch('ruta', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(functionId),
+          });
+          if (!response.ok) {
+            throw new Error('Add failed');
+          }
+          const newFunction = await response.json();
+          return newFunction;
+        } catch (error) {
+          throw new Error(error.message || 'Add failed');
+        }
+      };
+    
+
     return (
         <>
 
