@@ -1,55 +1,49 @@
-import React, { useState } from 'react'
-import { Functions, Movies } from '../data/Data'
+import React, { useContext, useEffect, useState } from 'react'
+import { MovieContext } from '../Context/ContextProvider';
 
 const AddFunction = ({ movieId }) => {
+    const { movies, functions, setFunctions } = useContext(MovieContext);
+
     const [menu, setMenu] = useState(false)
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [price, setPrice] = useState("");
 
-    const movie = Movies.find((movie) => movie.id === movieId);
+    const movie = movies.find((movie) => movie.id === movieId);
+
 
     const handleMenu = () => {
         setMenu(!menu)
     }
 
-    const handleAddFunction = () => {
-        const newFunction = {
-            id: Functions.length + 1,
-            date,
-            time,
-            price,
-            movieId: movieId,
-            director: movie.director,
-        };
-
-        Functions.push(newFunction);
-    };
-
-    //SIMULACION DE NUEVA FUNCION, ACA VA FETCH A LA API
-
     const addNewFunction = async (newFunction) => {
         try {
-          const lastFunctionId = functions.length > 0 ? functions[0].id : 0;
-          const newFunctionId = lastFunctionId + 1;
-          const functionId = { ...newFunction, id: newFunctionId };
-          const response = await fetch('ruta', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(functionId),
-          });
-          if (!response.ok) {
-            throw new Error('Add failed');
-          }
-          const newFunction = await response.json();
-          return newFunction;
+            const lastFunctionId = functions.length > 0 ? functions[0].id : 0;
+            const newFunctionsId = lastFunctionId + 1;
+            const newFunctionData = { ...newFunction, id: newFunctionsId };
+            const response = await fetch('https://localhost:7228/api/MovieScreening/Add', {
+                body: JSON.stringify(newFunctionData),
+            });
+            if (!response.ok) {
+                throw new Error('Add failed');
+            }
+            const newFunction = await response.json();
+            setFunctions((prevFunctions) => [newFunction, ...prevFunctions]);
+            return newFunction;
         } catch (error) {
-          throw new Error(error.message || 'Add failed');
+            throw new Error(error.message || 'Add failed');
         }
-      };
-    
+    };
+
+    const handleAddFunction = () => {
+        const newFunction = {
+            date,
+            film: movie,
+            price,
+            time,
+        };
+        addNewFunction(newFunction);
+    };
 
     return (
         <>
@@ -65,7 +59,7 @@ const AddFunction = ({ movieId }) => {
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <div className="bg-zinc-900 text-white text-start p-6 w-[500px]">
                         <i onClick={handleMenu} className="bi bi-arrow-left-short text-2xl cursor-pointer" />
-                        <p className='text-xl p-2 text-center'>NUEVA FUNCIÓN: {movie.title}</p>
+                        <p className='text-xl p-2 text-center'>NUEVA FUNCIÓN: </p>
                         <form onSubmit={handleAddFunction}>
                             <div className="mb-4">
                                 <label className="block text-sm mb-2">Fecha</label>
