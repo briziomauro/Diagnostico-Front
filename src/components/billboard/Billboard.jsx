@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Movies } from "../data/Data";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -9,6 +8,8 @@ const Billboard = () => {
   const handleNavigate = (path) => {
     navigate(path);
   };
+
+  //fetch getall movies
 
   return (
     <div className="container mx-auto mt-10 p-4">
