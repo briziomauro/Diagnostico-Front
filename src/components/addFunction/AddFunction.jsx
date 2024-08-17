@@ -15,39 +15,47 @@ const AddFunction = ({ movieId }) => {
     const handleMenu = () => {
         setMenu(!menu)
     }
+    console.log(movie)
+
 
     const addNewFunction = async (newFunction) => {
         try {
-            const lastFunctionId = functions.length > 0 ? functions[0].id : 0;
-            const newFunctionsId = lastFunctionId + 1;
-            const newFunctionData = { ...newFunction, id: newFunctionsId };
             const response = await fetch('https://localhost:7228/api/MovieScreening/Add', {
-                body: JSON.stringify(newFunctionData),
+                method: 'POST',
+                body: JSON.stringify(newFunction),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             if (!response.ok) {
                 throw new Error('Add failed');
             }
-            const newFunction = await response.json();
-            setFunctions((prevFunctions) => [newFunction, ...prevFunctions]);
-            return newFunction;
+            const newFunctionData = await response.json();
+            setFunctions((prevFunctions) => [newFunctionData, ...prevFunctions]);
+            return newFunctionData;
         } catch (error) {
             throw new Error(error.message || 'Add failed');
         }
     };
 
-    const handleAddFunction = () => {
+    const handleAddFunction = (e) => {
+        e.preventDefault();
+        const idFilm = parseInt(movieId, 10);
         const newFunction = {
             date,
-            film: movie,
-            price,
             time,
+            price: parseFloat(price),
+            idFilm: idFilm,
         };
         addNewFunction(newFunction);
     };
 
+
+
+    console.log(functions)
+
     return (
         <>
-
             <div
                 onClick={handleMenu}
                 className="flex items-center justify-center bg-zinc-800 bg-opacity-40 text-white hover:bg-opacity-80 transition-all duration-300 cursor-pointer mt-5 p-2"
@@ -75,7 +83,7 @@ const AddFunction = ({ movieId }) => {
                             <div className="mb-4">
                                 <label className="text-white block mb-2">Hora</label>
                                 <input
-                                    type="time"
+                                    type="text"
                                     value={time}
                                     onChange={(e) => setTime(e.target.value)}
                                     className="w-full p-2 bg-zinc-800 text-white "
@@ -86,7 +94,7 @@ const AddFunction = ({ movieId }) => {
                             <div className="mb-4">
                                 <label className="block text-sm mb-2">Precio</label>
                                 <input
-                                    type='text'
+                                    type='number'
                                     value={price}
                                     onChange={(e) => setPrice(e.target.value)}
                                     className="w-full p-2 bg-zinc-800 text-white "
