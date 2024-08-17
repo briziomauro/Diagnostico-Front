@@ -5,6 +5,8 @@ export const MovieContext = createContext();
 const ContextProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
     const [functions, setFunctions] = useState([]);
+    const [loading, setLoading] = useState(true); // Estado de carga
+    const [error, setError] = useState(null); // Estado de error
 
     const fetchMovies = async () => {
         try {
@@ -24,12 +26,11 @@ const ContextProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Error fetching movies:', error);
+            setError(error);
+        } finally {
+            setLoading(false); // Marcar como no cargado independientemente del resultado
         }
     };
-
-    useEffect(() => {
-        fetchMovies();
-    }, []);
 
     const fetchFunctions = async () => {
         try {
@@ -41,12 +42,25 @@ const ContextProvider = ({ children }) => {
             setFunctions(functionsData);
         } catch (error) {
             console.error('Error fetching functions:', error);
+            setError(error);
         }
     };
 
     useEffect(() => {
-        fetchFunctions();
+        const fetchData = async () => {
+            await Promise.all([fetchMovies(), fetchFunctions()]);
+        };
+
+        fetchData();
     }, []);
+
+    if (loading) {
+        return <div>Loading...</div>; // Mostrar indicador de carga
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>; // Mostrar mensaje de error
+    }
 
     return (
         <MovieContext.Provider value={{ movies, functions, setFunctions, setMovies }}>

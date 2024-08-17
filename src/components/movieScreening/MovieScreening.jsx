@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { MovieContext } from "../Context/ContextProvider";
 
 const MovieScreening = () => {
-
   const { id } = useParams();
   const { movies, functions } = useContext(MovieContext);
 
@@ -22,6 +21,8 @@ const MovieScreening = () => {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
+
+  console.log(movie)
 
   return (
     <>
@@ -60,7 +61,7 @@ const MovieScreening = () => {
               </ul>
             </section>
 
-            <AddFunction />
+            <AddFunction movieId={id} />
 
             <div className="mt-8">
               <button className="bg-white hover:bg-zinc-300 text-black py-3 px-6 transition duration-300 ease-in-out">
