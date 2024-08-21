@@ -75,7 +75,7 @@ const MovieScreening = () => {
             <img
               src={movie.imageUrl}
               alt={movie.name}
-              className="w-[315px] h-[438px] object-fit"
+              className="w-[400px] h-[415px] object-fit"
             />
             <p className="text-base my-2">
               <strong>Titulo: </strong> {movie.name}
