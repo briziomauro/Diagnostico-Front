@@ -54,7 +54,7 @@ const MovieScreening = () => {
                     </div>
                     <div className="flex gap-3 mt-3">
                       <UpdateFunction functionId={func.id} movieId={id}/>
-                      <DeleteFunction />
+                      <DeleteFunction functionId={func.id}/>
                     </div>
                   </li>
                 ))}
