@@ -1,36 +1,38 @@
-import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { MovieContext } from '../Context/ContextProvider';
 
-const UpdateFunction = ({ id, movieId }) => {
+const UpdateFunction = ({ functionId, movieId }) => {
     const [updateNot, setUpdateNot] = useState(false)
-    const navigate = useNavigate();
-    const { movies, functions, setFunctions } = useContext(MovieContext);
+    const { setFunctions } = useContext(MovieContext);
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [price, setPrice] = useState("");
-    //fetch a endpoint update
-    const updateFunction = async (updated) => {
+
+    const updateFunctionFetch = async (updated) => {
         try {
-            const response = await fetch(`https://localhost:7228/api/MovieScreening/Update/${id}`, {
+            const response = await fetch(`https://localhost:7228/api/MovieScreening/Update/${functionId}`, {
                 method: 'PUT',
                 body: JSON.stringify(updated),
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
+
+            console.log('Response status:', response.status);
+            console.log('Response:', response);
+
             if (!response.ok) {
-                throw new Error('Add failed');
+                const errorMessage = await response.json();
+                throw new Error(`Update failed: ${errorMessage.message}`);
             }
 
-            const updatedFunctionData = await response.json();
             setFunctions((prevFunctions) =>
                 prevFunctions.map((func) =>
-                    func.id === id ? { ...func, ...updated } : func
+                    func.id === functionId ? { ...func, ...updated } : func
                 )
             );
-            return updatedFunctionData;
         } catch (error) {
-            throw new Error(error.message || 'Update failed');
+            console.error('Error:', error.message);
         }
     };
 
@@ -38,12 +40,13 @@ const UpdateFunction = ({ id, movieId }) => {
         e.preventDefault();
         const idFilm = parseInt(movieId, 10);
         const updatedFunction = {
-            date : date,
-            time : time,
+            id: functionId,
+            date: date,
+            time: time,
             price: parseFloat(price),
             idFilm: idFilm,
         };
-        updateFunction(updatedFunction);
+        updateFunctionFetch(updatedFunction);
     };
     return (
         <>
@@ -58,14 +61,14 @@ const UpdateFunction = ({ id, movieId }) => {
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <div className="bg-zinc-900 text-white text-start p-6 w-[500px]">
                         <i onClick={() => setUpdateNot(!updateNot)} className="bi bi-arrow-left-short text-2xl cursor-pointer" />
-                        <p className='text-xl p-2 text-center'>EDITAR FUNCIÓN: {id}</p>
+                        <p className='text-xl p-2 text-center'>EDITAR FUNCIÓN: {functionId}</p>
                         <form onSubmit={handleUpdateFunction}>
                             <div className="mb-4">
                                 <label className="block text-sm mb-2">Fecha</label>
                                 <input
                                     type="date"
                                     value={date}
-                                    onChange={() => setDate(e.target.value)}
+                                    onChange={(e) => setDate(e.target.value)}
                                     className="w-full p-2 bg-zinc-800 text-white "
                                     required
                                 />
@@ -76,7 +79,7 @@ const UpdateFunction = ({ id, movieId }) => {
                                 <input
                                     type="text"
                                     value={time}
-                                    onChange={() => setTime(e.target.value)}
+                                    onChange={(e) => setTime(e.target.value)}
                                     className="w-full p-2 bg-zinc-800 text-white "
                                     required
                                 />
@@ -87,7 +90,7 @@ const UpdateFunction = ({ id, movieId }) => {
                                 <input
                                     type='text'
                                     value={price}
-                                    onChange={() => setPrice(e.target.value)}
+                                    onChange={(e) => setPrice(e.target.value)}
                                     className="w-full p-2 bg-zinc-800 text-white "
                                     required
                                 />
@@ -96,6 +99,7 @@ const UpdateFunction = ({ id, movieId }) => {
                             <button
                                 type='submit'
                                 className="w-full bg-zinc-900 hover:bg-zinc-950 text-white py-3 px-6 shadow-lg transition duration-300 ease-in-out mt-3"
+                                onClick={() => setUpdateNot(!updateNot)}
                             >
                                 EDITAR
                             </button>

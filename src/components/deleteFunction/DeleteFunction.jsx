@@ -1,8 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { MovieContext } from '../Context/ContextProvider';
 
-const DeleteFunction = () => {
+const DeleteFunction = ({ functionId }) => {
     const [deleteNot, setDeleteNot] = useState(false)
+    const { setFunctions } = useContext(MovieContext);
+
     //fetch al endpoint delete
+    const deleteFunction = async (functionId) => {
+        try {
+            const response = await fetch(`https://localhost:7228/api/MovieScreening/Delete/${functionId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Delete failed');
+            }
+            setFunctions((prevFunctions) => prevFunctions.filter((func) => func.id !== functionId));
+        } catch (error) {
+            throw new Error(error.message || 'Delete failed');
+        }
+    };
 
     return (
         <>
@@ -22,7 +41,7 @@ const DeleteFunction = () => {
                         </p>
                         <div className="flex justify-evenly">
                             <button
-                                //delete
+                                onClick={() => deleteFunction(functionId)}
                                 className="bg-zinc-700 text-white hover:bg-zinc-400 py-3 px-6 shadow-lg transition-all duration-300 ease-in-out"
                             >
                                 CONFIRMAR
