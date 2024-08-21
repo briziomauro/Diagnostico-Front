@@ -27,14 +27,16 @@ const AddFunction = ({ movieId }) => {
                     'Content-Type': 'application/json',
                 },
             });
-            if (!response.ok) {
-                throw new Error('Add failed');
+            const contentType = response.headers.get('Content-Type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text(); // Lee la respuesta como texto
+                throw new Error(`${text}`);
             }
             const newFunctionData = await response.json();
             setFunctions((prevFunctions) => [newFunctionData, ...prevFunctions]);
             return newFunctionData;
         } catch (error) {
-            throw new Error(error.message || 'Add failed');
+            alert(`${error.message}`);
         }
     };
 
