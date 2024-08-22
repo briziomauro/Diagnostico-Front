@@ -4,6 +4,8 @@ import DeleteFunction from "../deleteFunction/DeleteFunction";
 import UpdateFunction from "../updateFunction/UpdateFunction";
 import { useContext } from "react";
 import { MovieContext } from "../Context/ContextProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MovieScreening = () => {
   const { id } = useParams();
@@ -15,11 +17,8 @@ const MovieScreening = () => {
   );
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+    const parts = dateString.split("T");
+    return parts[0];
   };
 
   console.log(movie);
@@ -95,6 +94,20 @@ const MovieScreening = () => {
           </div>
         </div>
       </div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   );
 };

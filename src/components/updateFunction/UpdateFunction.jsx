@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { MovieContext } from "../Context/ContextProvider";
+import { toast } from "react-toastify";
 
 const UpdateFunction = ({
   functionId,
@@ -10,7 +11,7 @@ const UpdateFunction = ({
 }) => {
   const [updateNot, setUpdateNot] = useState(false);
   const { setFunctions } = useContext(MovieContext);
-  const formatDate = new Date(initialDate).toISOString().split("T")[0];
+  const formatDate = new Date(initialDate).toLocaleDateString("en-CA");
   const [date, setDate] = useState(formatDate);
   const [time, setTime] = useState(initialTime);
   const [price, setPrice] = useState(initialPrice);
@@ -41,8 +42,10 @@ const UpdateFunction = ({
           func.id === functionId ? { ...func, ...updated } : func
         )
       );
+      toast.success("Función actualizada con éxito");
     } catch (error) {
       console.error("Error:", error.message);
+      toast.error("Error al actualizar los detalles de la función.");
     }
   };
 
@@ -57,6 +60,7 @@ const UpdateFunction = ({
       idFilm: idFilm,
     };
     updateFunctionFetch(updatedFunction);
+    setUpdateNot(false);
   };
   return (
     <>
