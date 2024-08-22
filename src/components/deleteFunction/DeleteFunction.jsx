@@ -4,7 +4,20 @@ import { toast } from "react-toastify";
 
 const DeleteFunction = ({ functionId }) => {
   const [deleteNot, setDeleteNot] = useState(false);
-  const { setFunctions } = useContext(MovieContext);
+  const { functions, setFunctions } = useContext(MovieContext);
+
+  // Buscar la función correspondiente al functionId
+  const selectedFunction = functions.find((func) => func.id === functionId);
+  let functionDate = selectedFunction ? selectedFunction.date : null;
+
+  // Reformatear la fecha a día/mes/año
+  if (functionDate) {
+    const date = new Date(functionDate);
+    const day = date.getDate().toString().padStart(2, "0"); // Asegura que el día tenga dos dígitos
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Mes es base 0, por lo que se suma 1
+    const year = date.getFullYear();
+    functionDate = `${day}/${month}/${year}`; // Usar template string correctamente
+  }
 
   //fetch al endpoint delete
   const deleteFunction = async (functionId) => {
@@ -44,8 +57,11 @@ const DeleteFunction = ({ functionId }) => {
           <div className="bg-zinc-900 text-white text-center p-6">
             <h1 className="text-3xl mb-6">ELIMINAR FUNCION</h1>
             <p className="mb-6">
-              ¿Estás seguro que deseas eliminar la funcion del dia
-              <strong>*dia*</strong>?
+              ¿Estás seguro que deseas eliminar la función del día
+              <strong>
+                {functionDate ? ` ${functionDate}` : " [Fecha no disponible]"}
+              </strong>
+              ?
             </p>
             <div className="flex justify-evenly">
               <button
