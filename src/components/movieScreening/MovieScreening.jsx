@@ -17,12 +17,12 @@ const MovieScreening = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
-  console.log(movie)
+  console.log(movie);
 
   return (
     <>
@@ -30,10 +30,10 @@ const MovieScreening = () => {
         <div className="flex">
           <div className="w-[575px]">
             <section>
-              <h1 className="text-4xl font-bold mb-4 uppercase">{movie.name}</h1>
-              <p className="mb-4 font-light">
-                {movie.description}
-              </p>
+              <h1 className="text-4xl font-bold mb-4 uppercase">
+                {movie.name}
+              </h1>
+              <p className="mb-4 font-light">{movie.description}</p>
             </section>
 
             <section>
@@ -53,8 +53,14 @@ const MovieScreening = () => {
                       </span>
                     </div>
                     <div className="flex gap-3 mt-3">
-                      <UpdateFunction functionId={func.id} movieId={id}/>
-                      <DeleteFunction functionId={func.id}/>
+                      <UpdateFunction
+                        functionId={func.id}
+                        movieId={id}
+                        initialDate={func.date}
+                        initialTime={func.time}
+                        initialPrice={func.price}
+                      />
+                      <DeleteFunction functionId={func.id} />
                     </div>
                   </li>
                 ))}
@@ -68,7 +74,6 @@ const MovieScreening = () => {
                 COMPRAR ENTRADAS
               </button>
             </div>
-
           </div>
 
           <div className="lg:w-1/3 lg:pl-8 mt-6 lg:mt-0">
@@ -84,10 +89,10 @@ const MovieScreening = () => {
               <strong>Origen: </strong> {movie.origin}
             </p>
             <p className="text-base">
-              <strong>Director: </strong>{movie.director.name}
+              <strong>Director: </strong>
+              {movie.director.name}
             </p>
           </div>
-
         </div>
       </div>
     </>
