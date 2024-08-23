@@ -11,6 +11,7 @@ const MovieScreening = () => {
   const { id } = useParams();
   const { movies, functions } = useContext(MovieContext);
 
+  //encontrar la pelicula por el id de la ruta
   const movie = movies.find((movie) => movie.id === parseInt(id));
   const movieFunctions = functions.filter(
     (func) => func.film.id === parseInt(id)

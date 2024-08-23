@@ -13,10 +13,10 @@ const DeleteFunction = ({ functionId }) => {
   // Reformatear la fecha a día/mes/año
   if (functionDate) {
     const date = new Date(functionDate);
-    const day = date.getDate().toString().padStart(2, "0"); // Asegura que el día tenga dos dígitos
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Mes es base 0, por lo que se suma 1
+    const day = date.getDate().toString().padStart(2, "0"); 
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); 
     const year = date.getFullYear();
-    functionDate = `${day}/${month}/${year}`; // Usar template string correctamente
+    functionDate = `${day}/${month}/${year}`; 
   }
 
   //fetch al endpoint delete
