@@ -5,8 +5,8 @@ export const MovieContext = createContext();
 const ContextProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
     const [functions, setFunctions] = useState([]);
-    const [loading, setLoading] = useState(true); // Estado de carga
-    const [error, setError] = useState(null); // Estado de error
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
 
     const fetchMovies = async () => {
         try {
@@ -21,14 +21,13 @@ const ContextProvider = ({ children }) => {
                 }
                 const moviesData = await response.json();
                 setMovies(moviesData);
-                // Save to localStorage
                 localStorage.setItem('movies', JSON.stringify(moviesData));
             }
         } catch (error) {
             console.error('Error fetching movies:', error);
             setError(error);
         } finally {
-            setLoading(false); // Marcar como no cargado independientemente del resultado
+            setLoading(false); 
         }
     };
 
